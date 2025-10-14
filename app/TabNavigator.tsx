@@ -12,15 +12,16 @@ export default function TabNavigator() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => {
+        tabBarIcon: ({ color, size = 20 }) => {
           let icon = "";
           if (route.name === "Home") icon = "🏠";
           else if (route.name === "Profile") icon = "👤";
           else if (route.name === "Settings") icon = "⚙️";
-          return <Text style={{ fontSize: 20 }}>{icon}</Text>;
+          return <Text style={{ fontSize: size, color }}>{icon}</Text>;
         },
-        tabBarActiveTintColor: "#007AFF", // bleu actif
-        tabBarInactiveTintColor: "#888",  // gris inactif
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "#888",
+        headerShown: true,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: "Home" }} />
