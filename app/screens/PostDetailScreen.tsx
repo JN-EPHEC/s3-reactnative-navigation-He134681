@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { RootStackParamList } from "../_layout";
+import { useRoute, RouteProp } from "@react-navigation/native";
+import { BlogStackParamList } from "../BlogStackNavigator";
 
-type PostDetailRouteProp = RouteProp<RootStackParamList, "PostDetail">;
+type PostDetailScreenRouteProp = RouteProp<BlogStackParamList, "PostDetail">;
 
 export default function PostDetailScreen() {
-  const route = useRoute<PostDetailRouteProp>();
+  const route = useRoute<PostDetailScreenRouteProp>();
   const { title, content } = route.params;
 
   return (
@@ -18,7 +18,16 @@ export default function PostDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  title: { fontSize: 22, fontWeight: "bold", marginBottom: 12 },
-  content: { fontSize: 16 },
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  content: {
+    fontSize: 16,
+  },
 });

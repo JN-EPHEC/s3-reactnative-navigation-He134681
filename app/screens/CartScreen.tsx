@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function SettingsScreen() {
+export default function CartScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>App Settings</Text>
+      <Text style={styles.text}>Your Shopping Cart is empty.</Text>
     </View>
   );
 }
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
+    color: "gray",
   },
 });

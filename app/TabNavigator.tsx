@@ -19,8 +19,8 @@ export default function TabNavigator() {
           else if (route.name === "Settings") icon = "⚙️";
           return <Text style={{ fontSize: size, color }}>{icon}</Text>;
         },
-        tabBarActiveTintColor: "#007AFF",
-        tabBarInactiveTintColor: "#888",
+        tabBarActiveTintColor: "#007AFF", // couleur active (bleu)
+        tabBarInactiveTintColor: "#888",  // couleur inactive (gris)
         headerShown: true,
       })}
     >

@@ -1,29 +1,53 @@
 import "react-native-reanimated";
+import "react-native-gesture-handler";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Text } from "react-native";
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PostListScreen from "./screens/PostListScreen";
-import PostDetailScreen from "./screens/PostDetailScreen";
+// Import all the main navigators for each exercise
+import BlogStackNavigator from "./BlogStackNavigator";
+import SocialAppNavigator from "./SocialAppNavigator";
+import ECommerceNavigator from "./ECommerceNavigator";
+import CoursesNavigator from "./CoursesNavigator"; // This is the Drawer from the assignment
 
-export type RootStackParamList = {
-  PostList: undefined;
-  PostDetail: { postId: string; title: string; content: string };
-};
+const RootTab = createBottomTabNavigator();
 
 export default function RootLayout() {
-  const Stack = createNativeStackNavigator<RootStackParamList>();
-
   return (
-    <Stack.Navigator initialRouteName="PostList">
-      <Stack.Screen
-        name="PostList"
-        component={PostListScreen}
-        options={{ title: "Blog Posts" }}
+    <RootTab.Navigator
+      screenOptions={{
+        headerShown: false, // Each tab will manage its own header
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "gray",
+      }}
+    >
+      <RootTab.Screen
+        name="Ex1: Blog"
+        component={BlogStackNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>📝</Text>,
+        }}
       />
-      <Stack.Screen
-        name="PostDetail"
-        component={PostDetailScreen}
-        options={{ title: "Post Details" }}
+      <RootTab.Screen
+        name="Ex2: Social"
+        component={SocialAppNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>👥</Text>,
+        }}
       />
-    </Stack.Navigator>
+      <RootTab.Screen
+        name="Ex3: E-commerce"
+        component={ECommerceNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>🛒</Text>,
+        }}
+      />
+      <RootTab.Screen
+        name="Assign: Courses"
+        component={CoursesNavigator} // This component is the DrawerNavigator
+        options={{
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>🎓</Text>,
+        }}
+      />
+    </RootTab.Navigator>
   );
 }

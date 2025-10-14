@@ -1,55 +1,59 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../_layout";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { BlogStackParamList } from "../BlogStackNavigator";
 
-const posts = [
+const FAKE_POSTS = [
   {
-    postId: "1",
+    id: "1",
     title: "React Native is Awesome",
-    content: "React Native lets you build mobile apps using JavaScript and React.",
+    content: "Discover why React Native is a great choice for building cross-platform mobile applications.",
   },
   {
-    postId: "2",
+    id: "2",
     title: "State Management Tips",
-    content: "Use Context, Redux, or Zustand for scalable state management.",
+    content: "A deep dive into managing state effectively in your React Native apps, from useState to Redux.",
   },
   {
-    postId: "3",
+    id: "3",
     title: "UI Design Principles",
-    content: "Consistency, simplicity, and feedback are key to great UI design.",
+    content: "Learn the core principles of UI design to make your apps not only functional but also beautiful.",
   },
 ];
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, "PostList">;
+// Define the type for the navigation prop
+type PostListScreenNavigationProp = NativeStackNavigationProp<BlogStackParamList, "PostList">;
 
 export default function PostListScreen() {
-  const navigation = useNavigation<NavigationProp>();
+  const navigation = useNavigation<PostListScreenNavigationProp>();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Blog Posts</Text>
-      {posts.map((post) => (
-        <View key={post.postId} style={styles.postItem}>
-          <Button
-            title={post.title}
+      <FlatList
+        data={FAKE_POSTS}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.postItem}
             onPress={() =>
               navigation.navigate("PostDetail", {
-                postId: post.postId,
-                title: post.title,
-                content: post.content,
+                postId: item.id,
+                title: item.title,
+                content: item.content,
               })
             }
-          />
-        </View>
-      ))}
+          >
+            <Text style={styles.postTitle}>{item.title}</Text>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  header: { fontSize: 24, fontWeight: "bold", marginBottom: 16 },
-  postItem: { marginBottom: 12 },
+  container: { flex: 1 },
+  postItem: { padding: 16, borderBottomWidth: 1, borderBottomColor: "#ccc" },
+  postTitle: { fontSize: 18 },
 });
