@@ -1,17 +1,12 @@
 import "react-native-reanimated";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./app/TabNavigator";
 
-export default function App() {
+export default function SettingsScreen() {
   return (
-    <NavigationContainer>
-      <TabNavigator />
-      <View style={styles.container}>
-        <Text style={styles.text}>App Settings</Text>
-      </View>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text style={styles.text}>App Settings</Text>
+    </View>
   );
 }
 
