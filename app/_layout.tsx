@@ -17,12 +17,12 @@ export default function RootLayout() {
       <Stack.Screen
         name="PostList"
         component={PostListScreen}
-        options={{ title: "Blog Posts" }} "Blog Posts" }}
+        options={{ title: "Blog Posts" }}
       />
       <Stack.Screen
-        name="PostDetail"me="PostDetail"
-        component={PostDetailScreen}stDetailScreen}
-        options={{ title: "Post Details" }}Post Details" }}
+        name="PostDetail"
+        component={PostDetailScreen}
+        options={{ title: "Post Details" }}
       />
     </Stack.Navigator>
   );
