@@ -1,32 +1,24 @@
 import React from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { View, Text, StyleSheet } from "react-native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../_layout";
 
-type Props = NativeStackScreenProps<RootStackParamList, "PostDetail">;
+type PostDetailRouteProp = RouteProp<RootStackParamList, "PostDetail">;
 
-export default function PostDetailScreen({ route }: Props) {
+export default function PostDetailScreen() {
+  const route = useRoute<PostDetailRouteProp>();
   const { title, content } = route.params;
 
   return (
     <View style={styles.container}>
-      {/* Replace this with your code for the details of an item, use properties ! */}
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.content}>{content}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    padding: 16,
-  },
-  title: {
-    marginBottom: 12,
-  },
-  body: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
+  container: { flex: 1, padding: 16 },
+  title: { fontSize: 22, fontWeight: "bold", marginBottom: 12 },
+  content: { fontSize: 16 },
 });
